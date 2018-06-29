@@ -36,6 +36,16 @@ export AppModule {}
 <alternation src="assets/image.png"></alternation>
 ```
 
+```css
+alternation {
+  height: 256px; // 75vh; 45vw; 12em;
+}
+```
+
+```html
+  <alternation speed="1" delay="200" src="assets/image.png"></alternation>
+```
+
 ```html
 <main cdkScrollable fxLayout fxLayoutAlign="center center">
   <alternation *ngIf="document" [src]="document?.image"></alternation>
