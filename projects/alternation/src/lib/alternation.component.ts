@@ -13,6 +13,8 @@ import { Alternation } from './alternation.service';
 })
 export class AlternationComponent implements OnInit {
   constructor(public alter: Alternation, private dom: DomSanitizer) { }
+  @Input() speed: number;
+  @Input() delay: number;
   @Input() src: string;
   alternation;
 
@@ -25,7 +27,7 @@ export class AlternationComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.alternation = this.alter.init();
+    this.alternation = this.alter.init({ speed: this.speed, delay: this.delay });
   }
 
 }
