@@ -1,0 +1,16 @@
+:host {
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+}
+
+div {
+  background-size: cover;
+  // background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center;
+  will-change: transform;
+  display: block;
+  height: 140%;
+  width: 100%;
+}
