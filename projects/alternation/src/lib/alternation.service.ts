@@ -12,19 +12,19 @@ export class Alternation {
   alternation: Subject<number> = new Subject();
 
   position(value) {
-    return { value, params: { next: value, time: this.time.value } };
+    return { value, params: { next: value || 0, time: this.time.value } };
   }
 
   init(delay = 100) {
     this.dispatcher.scrolled(delay).subscribe((scrollable: CdkScrollable) => {
-      const $scrollable: HTMLElement = scrollable.getElementRef().nativeElement;
-      let next =  -Math.round(($scrollable.scrollTop / this.speed.value));
+      if (scrollable) {
+        const $scrollable: HTMLElement = scrollable.getElementRef().nativeElement;
+        let next =  -Math.round(($scrollable.scrollTop / this.speed.value));
 
-      if (next < -128) {
-        next = -128;
+        if (next) {
+          this.zone.run(() => this.alternation.next(next));
+        }
       }
-
-      this.zone.run(() => this.alternation.next(next));
     });
 
     return this.alternation;
