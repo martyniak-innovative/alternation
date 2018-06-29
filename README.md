@@ -1,10 +1,12 @@
 # 〽️ Alternation 
 
+## ngx image parallax build on top of @angular/animations and @angular/cdk scrollable
+
 ```bash
 npm i alternation --save
+or
+npm i alternation @angular/cdk @angular/animations --save
 ```
-
-### ngx image parallax build on top of @angular/animations
 
 ```ts
 import { AlternationModule } from 'alternation';
@@ -14,7 +16,20 @@ import { AlternationModule } from 'alternation';
     AlternationModule,
   ],
 })
-export YourComponent {}
+export YourModule {}
+```
+
+```ts
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ScrollDispatchModule } from '@angular/cdk/scrolling';
+
+@NgModule({
+  imports: [
+    BrowserAnimationsModule,
+    ScrollDispatchModule,
+  ],
+})
+export AppModule {}
 ```
 
 ```html
@@ -22,7 +37,7 @@ export YourComponent {}
 ```
 
 ```html
-<main fxLayout fxLayoutAlign="center center">
+<main cdkScrollable fxLayout fxLayoutAlign="center center">
   <alternation *ngIf="document" [src]="document?.image"></alternation>
   <mat-spinner *ngIf="!document"></mat-spinner>
 </main>
