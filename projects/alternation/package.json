@@ -1,6 +1,16 @@
 {
   "name": "alternation",
-  "version": "0.1.0",
+  "description": "ngx image parallax build on top of @angular/animations and @angular/cdk scrollable",
+  "keywords": [
+    "angular",
+    "parallax",
+    "library"
+  ],
+  "version": "0.1.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/martyniak-innovative/alternation.git"
+  },
   "peerDependencies": {
     "@angular/platform-browser": "^6.0.0-rc.0 || ^6.0.0",
     "@angular/animations": "^6.0.0-rc.0 || ^6.0.0",

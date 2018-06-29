@@ -8,22 +8,19 @@ import { Alternation } from './alternation.service';
   selector: 'alternation',
   animations: [alternationTrigger],
   styleUrls: ['./alternation.component.scss'],
-  template: `
-    <div [style.backgroundImage]="safeSrc" (@alternation.done)="done($event)"
-      [@alternation]="alter.position(alternation | async)"></div>
-  `,
+  template: `<div [style.backgroundImage]="safeSrc" (@alternation.done)="done($event)"
+    [@alternation]="alter.position(alternation | async)"></div>`,
 })
 export class AlternationComponent implements OnInit {
   constructor(public alter: Alternation, private dom: DomSanitizer) { }
-  alternation;
-
   @Input() src: string;
+  alternation;
 
   get safeSrc(): SafeStyle {
     return this.src ? this.dom.bypassSecurityTrustStyle(`url(${ this.src })`) : '';
   }
 
-  done(ev) {
+  done(ev): void {
     ev.element.style.transform = `translateY(${ ev.toState }px)`;
   }
 
