@@ -43,7 +43,7 @@ alternation {
 ```
 
 ```html
-  <alternation speed="1" delay="200" src="assets/image.png"></alternation>
+  <alternation speed="2" delay="200" src="assets/image.png"></alternation>
 ```
 
 ```html
@@ -51,4 +51,25 @@ alternation {
   <alternation *ngIf="document" [src]="document?.image"></alternation>
   <mat-spinner *ngIf="!document"></mat-spinner>
 </main>
+```
+
+## plans
+- tests
+- documentation
+- vertical scrolling
+- background-attachment ??
+- optimization ??
+- split to component 
+  `<alter-image src="..."></alter-image>` 
+  `<alter-background src="...">
+    ...  
+  </alter-background>`
+- better handling of parallax element
+- (text) line paralax scorlling  ??
+```html
+<!-- with stagger delay -->
+<alter-list>
+  <alter-line>Hello</alter-line>
+  <alter-line>World</alter-line>
+</alter-list>
 ```
