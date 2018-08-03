@@ -10,7 +10,8 @@ import { Alternation } from './alternation.service';
   styleUrls: ['./alternation.component.scss'],
   template: `<div [style.backgroundImage]="safeSrc"
     [@.disabled]="disabled" (@alternation.done)="done($event)"
-    [@alternation]="alter.position(alternation | async)"></div>`,
+    (@alternation.start)="start($event)"
+    [@alternation]="alternation | async"></div>`,
 })
 export class AlternationComponent implements OnInit {
   constructor(
@@ -26,6 +27,10 @@ export class AlternationComponent implements OnInit {
 
   get safeSrc(): SafeStyle {
     return this.src ? this.dom.bypassSecurityTrustStyle(`url(${ this.src })`) : '';
+  }
+
+  start(ev): void {
+    this.alter.start();
   }
 
   done(ev): void {
