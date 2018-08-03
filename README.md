@@ -43,7 +43,7 @@ alternation {
 ```
 
 ```html
-  <alternation speed="2" delay="200" src="assets/image.png"></alternation>
+  <alternation delay="200" src="assets/image.png"></alternation>
 ```
 
 ```html
@@ -53,11 +53,11 @@ alternation {
 </main>
 ```
 
-## plans
+## plans for 1.0.0
 - tests
+- demo
 - documentation
 - vertical scrolling
-- background-attachment ??
 - optimization ??
 - split to component 
   `<alter-image src="..."></alter-image>` 

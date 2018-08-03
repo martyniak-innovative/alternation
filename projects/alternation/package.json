@@ -6,16 +6,16 @@
     "parallax",
     "library"
   ],
-  "version": "0.2.0",
+  "version": "1.0.0-beta.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/martyniak-innovative/alternation.git"
   },
   "peerDependencies": {
-    "@angular/platform-browser": "^6.0.0-rc.0 || ^6.0.0",
-    "@angular/animations": "^6.0.0-rc.0 || ^6.0.0",
-    "@angular/common": "^6.0.0-rc.0 || ^6.0.0",
-    "@angular/core": "^6.0.0-rc.0 || ^6.0.0",
-    "@angular/cdk": "^6.0.0-rc.0 || ^6.0.0"
+    "@angular/platform-browser": "^6.0.0",
+    "@angular/animations": "^6.0.0",
+    "@angular/common": "^6.0.0",
+    "@angular/core": "^6.0.0",
+    "@angular/cdk": "^6.0.0"
   }
 }
