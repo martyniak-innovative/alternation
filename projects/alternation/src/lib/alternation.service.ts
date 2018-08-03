@@ -8,32 +8,39 @@ import { ScrollDispatcher, CdkScrollable } from '@angular/cdk/scrolling';
 export class Alternation {
   constructor(private dispatcher: ScrollDispatcher, private zone: NgZone) { }
   running: BehaviorSubject<boolean> = new BehaviorSubject(false);
-  time: BehaviorSubject<string> = new BehaviorSubject('.2s');
   speed: BehaviorSubject<number> = new BehaviorSubject(3);
-  alternation: Subject<number> = new Subject();
+  alternation: BehaviorSubject<any> = new BehaviorSubject({ value: 0, params: { next: 0, time: 0 } });
 
-  position(value) {
-    return { value, params: { next: value || 0, time: this.time.value } };
+  position(value, time) {
+    return { value, params: { next: value || 0, time } };
   }
 
   done() {
     this.running.next(false);
   }
 
-  init(el, options: { delay?: number } = { delay: 100 }) {
+  start() {
+    this.running.next(true);
+  }
+
+  init(el, options: { delay?: number } = { delay: null }) {
 
     this.dispatcher.scrolled(options.delay).subscribe((scrollable: CdkScrollable) => {
       if (scrollable) {
         if (this.running.value) { return; }
         const $scrollable: HTMLElement = scrollable.getElementRef().nativeElement;
-        let next = -Math.round(($scrollable.scrollTop / 6));
-        // const rect = el.nativeElement.getBoundingClientRect();
-        // console.log(rect.top, rect.height, rect.top + rect.height);
+        let next = -Math.round($scrollable.scrollTop / 3);
+        const componentRect = el.nativeElement.getBoundingClientRect();
+        const difference = Math.round(componentRect.height - componentRect.height * 2);
+        const time = Math.abs(this.alternation.value.value - next) * 5;
+
+        if (next < difference) {
+          next = difference;
+        }
 
         if (next) {
           this.zone.run(() => {
-            this.running.next(true);
-            this.alternation.next(next);
+            this.alternation.next(this.position(next, time));
           });
         }
       }
