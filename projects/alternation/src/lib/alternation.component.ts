@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ElementRef, Renderer2 } from '@angular/core';
 import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 
 import { alternationTrigger } from './alternation.trigger';
@@ -12,8 +12,12 @@ import { Alternation } from './alternation.service';
     [@alternation]="alter.position(alternation | async)"></div>`,
 })
 export class AlternationComponent implements OnInit {
-  constructor(public alter: Alternation, private dom: DomSanitizer) { }
-  @Input() speed: number;
+  constructor(
+    public alter: Alternation,
+    private renderer: Renderer2,
+    private dom: DomSanitizer,
+    private el: ElementRef
+  ) { }
   @Input() delay: number;
   @Input() src: string;
   alternation;
@@ -23,11 +27,11 @@ export class AlternationComponent implements OnInit {
   }
 
   done(ev): void {
-    ev.element.style.transform = `translateY(${ ev.toState }px)`;
+    this.renderer.setStyle(ev.element, 'transform', `translateY(${ ev.toState }px)`);
   }
 
   ngOnInit() {
-    this.alternation = this.alter.init({ speed: this.speed, delay: this.delay });
+    this.alternation = this.alter.init(this.el, { delay: this.delay });
   }
 
 }
