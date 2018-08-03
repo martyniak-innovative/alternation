@@ -42,6 +42,131 @@
           }
         }
       }
+    },
+    "alternation-page": {
+      "root": "projects/alternation-page/",
+      "sourceRoot": "projects/alternation-page/src",
+      "projectType": "application",
+      "prefix": "app",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/alternation-page",
+            "index": "projects/alternation-page/src/index.html",
+            "main": "projects/alternation-page/src/main.ts",
+            "polyfills": "projects/alternation-page/src/polyfills.ts",
+            "tsConfig": "projects/alternation-page/tsconfig.app.json",
+            "assets": [
+              "projects/alternation-page/src/favicon.ico",
+              "projects/alternation-page/src/assets"
+            ],
+            "styles": [
+              {
+                "input": "node_modules/@angular/material/prebuilt-themes/indigo-pink.css"
+              },
+              "projects/alternation-page/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/alternation-page/src/environments/environment.ts",
+                  "with": "projects/alternation-page/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "alternation-page:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "alternation-page:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "alternation-page:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/alternation-page/src/test.ts",
+            "polyfills": "projects/alternation-page/src/polyfills.ts",
+            "tsConfig": "projects/alternation-page/tsconfig.spec.json",
+            "karmaConfig": "projects/alternation-page/karma.conf.js",
+            "styles": [
+              {
+                "input": "node_modules/@angular/material/prebuilt-themes/indigo-pink.css"
+              },
+              "projects/alternation-page/src/styles.css"
+            ],
+            "scripts": [],
+            "assets": [
+              "projects/alternation-page/src/favicon.ico",
+              "projects/alternation-page/src/assets"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/alternation-page/tsconfig.app.json",
+              "projects/alternation-page/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "alternation-page-e2e": {
+      "root": "projects/alternation-page-e2e/",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/alternation-page-e2e/protractor.conf.js",
+            "devServerTarget": "alternation-page:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "alternation-page:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "projects/alternation-page-e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "alternation"

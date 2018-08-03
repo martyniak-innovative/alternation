@@ -1,0 +1,14 @@
+main {
+  overflow-y: auto;
+  height: 100vh;
+}
+
+
+.block {
+  height: 90vh;
+  background: #ddd;
+}
+
+alternation {
+  height: 256px;
+}
