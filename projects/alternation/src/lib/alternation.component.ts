@@ -28,6 +28,7 @@ export class AlternationComponent implements OnInit {
 
   done(ev): void {
     this.renderer.setStyle(ev.element, 'transform', `translateY(${ ev.toState }px)`);
+    this.alter.done();
   }
 
   ngOnInit() {
