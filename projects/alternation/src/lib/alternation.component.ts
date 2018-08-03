@@ -8,7 +8,8 @@ import { Alternation } from './alternation.service';
   selector: 'alternation',
   animations: [alternationTrigger],
   styleUrls: ['./alternation.component.scss'],
-  template: `<div [style.backgroundImage]="safeSrc" (@alternation.done)="done($event)"
+  template: `<div [style.backgroundImage]="safeSrc"
+    [@.disabled]="disabled" (@alternation.done)="done($event)"
     [@alternation]="alter.position(alternation | async)"></div>`,
 })
 export class AlternationComponent implements OnInit {
@@ -18,6 +19,7 @@ export class AlternationComponent implements OnInit {
     private dom: DomSanitizer,
     private el: ElementRef
   ) { }
+  @Input() disabled: boolean = false;
   @Input() delay: number;
   @Input() src: string;
   alternation;
