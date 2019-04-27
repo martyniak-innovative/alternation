@@ -3,7 +3,6 @@ main {
   height: 100vh;
 }
 
-
 .block {
   height: 90vh;
   background: #ddd;
@@ -11,4 +10,11 @@ main {
 
 alternation {
   height: 512px;
+}
+
+.content {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

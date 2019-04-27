@@ -1,17 +1,25 @@
-import { Component, OnInit, Input, ElementRef, Renderer2 } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
 import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
-
-import { alternationTrigger } from './alternation.trigger';
 import { Alternation } from './alternation.service';
+import { alternationTrigger } from './alternation.trigger';
 
 @Component({
   selector: 'alternation',
   animations: [alternationTrigger],
   styleUrls: ['./alternation.component.scss'],
-  template: `<div [style.backgroundImage]="safeSrc"
-    [@.disabled]="disabled" (@alternation.done)="done($event)"
-    (@alternation.start)="start($event)"
-    [@alternation]="alternation | async"></div>`,
+  template: `
+    <div
+      class="image"
+      [style.backgroundImage]="safeSrc"
+      [@.disabled]="disabled"
+      (@alternation.done)="done($event)"
+      (@alternation.start)="start($event)"
+      [@alternation]="alternation | async"
+    ></div>
+    <div class="content">
+      <ng-content></ng-content>
+    </div>
+  `,
 })
 export class AlternationComponent implements OnInit {
   constructor(
